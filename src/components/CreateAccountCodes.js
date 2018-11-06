@@ -41,7 +41,7 @@ class CreateAccountCodes extends Component {
     }
 
     componentDidMount = () => {
-        if(this.props.userReducer && !this.props.userReducer.authorization && !this.props.userReducer.user) {
+        if(!AppUtils.isAuthorized(this.props.userReducer)) {
             this.props.history.push('/');
         }
     }

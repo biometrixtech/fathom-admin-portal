@@ -1,3 +1,6 @@
+// import third-party libraries
+import moment from 'moment';
+
 // import constants
 import { ErrorMessages, } from '../../constants';
 
@@ -84,6 +87,20 @@ const utils = {
             errorMsg,
             isValid,
         }
+    },
+
+    isAuthorized(userReducer) {
+        if(
+            userReducer &&
+            userReducer.authorization &&
+            userReducer.authorization.jwt &&
+            moment().toISOString() <= moment(userReducer.authorization.expires).toISOString() &&
+            userReducer.user &&
+            userReducer.user.id
+        ) {
+            return true;
+        }
+        return false;
     },
 
 }

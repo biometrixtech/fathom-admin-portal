@@ -54,6 +54,11 @@ function fetcher(method, route, params, body, headers = {}) {
             body: JSON.stringify(body)
         })
         .then(response => {
+
+            if (response && /401/.test(`${response.status}`) && response !== APIConfig.endpoints.get('login')) {
+                // TODO: reauthorized
+            }
+
             if(response.status >= 200 && response.status < 300) {
                 return response.json();
             } else {

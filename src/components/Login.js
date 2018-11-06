@@ -32,7 +32,7 @@ class Login extends Component {
     }
 
     componentDidMount = () => {
-        if(this.props.userReducer && this.props.userReducer.authorization && this.props.userReducer.user) {
+        if(AppUtils.isAuthorized(this.props.userReducer)) {
             this.props.history.push('/account_codes');
         }
     }
@@ -50,9 +50,9 @@ class Login extends Component {
             UserActions.loginUser(email, password)
                 .then(res => {
                     this.props.dispatch({
-                        type: 'SET_USER',
+                        type: 'SET_AUTHORIZATION_USER',
                         data: res,
-                    })
+                    });
                     this.setState({ loading: false, });
                     this.props.history.push('/account_codes');
                 })

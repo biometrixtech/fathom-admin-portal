@@ -49,7 +49,30 @@ const getAccounts = (header, account_id) => {
         .catch(err => Promise.reject(err));
 };
 
+
+
+/**
+  * Authorize User
+  * - will get new token
+  */
+const authorizeUser = (authorization, user, userCreds) => {
+    let session_token = authorization.session_token;
+    let userId = user.id;
+    return dispatch => AppAPI.authorize.post({ userId }, { session_token })
+        .then(response => {
+
+            // dispatch({
+            //     type: SET_AUTHORIZATION,
+            //     data: response,
+            // });
+
+            return Promise.resolve(response);
+        })
+        .catch(err => Promise.reject(err));
+};
+
 export default {
+    authorizeUser,
     createAccountCodes,
     getAccounts,
     loginUser,

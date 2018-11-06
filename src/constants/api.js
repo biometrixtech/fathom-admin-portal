@@ -28,6 +28,7 @@ export default {
     //    - AppAPI.blog.delete()
     endpoints: new Map([
         ['account',     `${usersAPIVersion}/account`], // POST
+        ['authorize',   `${usersAPIVersion}/user/{userId}/authorize`], // POST
         ['get_account', `${usersAPIVersion}/account/{account_id}`], // GET
         ['login',       `${usersAPIVersion}/user/login`], // POST
     ]),
