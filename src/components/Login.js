@@ -31,6 +31,12 @@ class Login extends Component {
         };
     }
 
+    componentDidMount = () => {
+        if(this.props.userReducer && this.props.userReducer.authorization && this.props.userReducer.user) {
+            this.props.history.push('/account_codes');
+        }
+    }
+
     _handleFormChange = e => {
         let newFormInputs = _.update(this.state.form_inputs, e.target.name, () => e.target.value);
         this.setState({ form_inputs: newFormInputs, });
