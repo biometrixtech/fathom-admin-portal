@@ -20,8 +20,8 @@ class Login extends Component {
         this.state = {
             error:       '',
             form_inputs: {
-                email:    'mazen+mvp@fathomai.com',
-                password: 'Fathom123!',
+                email:    '',
+                password: '',
             },
             loading: false,
         };

@@ -21,12 +21,12 @@ class CreateAccountCodes extends Component {
             code:        '',
             error:       '',
             form_inputs: {
-                campaign:          '66,77,22', // (array of integers )
-                conference:        'NCYSA', // (string) (not required)
-                division_tier:     'Youth', // (string) (not required)
-                number_of_seats:   '10', // integer
-                organization_name: 'NCFC Youth_3', // string
-                persona:           '1,5,6', // (array of integers )
+                campaign:          '', // (array of integers )
+                conference:        '', // (string) (not required)
+                division_tier:     '', // (string) (not required)
+                number_of_seats:   '', // integer
+                organization_name: '', // string
+                persona:           '', // (array of integers )
             },
             loading: false,
         };
