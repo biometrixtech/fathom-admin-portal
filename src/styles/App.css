@@ -1,0 +1,194 @@
+.App {
+    align-items: center;
+    background-image: url('../assets/background.png');
+    background-position: center;
+    -ms-background-position: center;
+    -o-background-position: center;
+    -moz-background-position: center;
+    -webkit-background-position: center;
+    background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+}
+
+.App h2 {
+    font-size: 20pt;
+    margin-top: 40px;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 120pt;
+}
+
+.App-header {
+    align-items: center;
+    color: var(--fathom-white);
+    display: flex;
+    flex-direction: column;
+    font-size: calc(10px + 2vmin);
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0px 100px;
+}
+
+.App-link {}
+
+.fathom-yellow {
+    color: var(--fathom-yellow);
+}
+
+.fathom-yellow:hover {
+    color: var(--fathom-yellow);
+}
+
+.App-subtext {
+    color: var(--fathom-white);
+    font-size: 12pt;
+    opacity: 0.7;
+}
+
+.subtitle {
+    font-size: 12pt;
+    opacity: 0.8;
+}
+
+.forgot-password-link {
+    color: var(--fathom-white);
+    font-size: 12pt;
+    opacity: 0.5;
+}
+
+.forgot-password-link:hover {
+    color: var(--fathom-white);
+}
+
+.store-logo {
+    cursor: pointer;
+    display: flex;
+    margin: 8pt 0pt;
+    width: 145pt;
+}
+
+.button-link {
+    background-color: transparent !important;
+    color: var(--fathom-yellow) !important;
+}
+
+/*
+ * Form related styles
+ */
+.form-label {
+    color: var(--fathom-white) !important;
+}
+
+.error-wrapper {
+    background-color: var(--fathom-red);
+    margin: 10pt;
+    padding: 8pt 40pt;
+}
+
+.error-text {
+    color: var(--fathom-white);
+    font-size: 10pt;
+}
+
+.code-wrapper {
+    background-color: var(--fathom-green);
+    margin: 10pt;
+    padding: 8pt 40pt;
+}
+
+.code-text {
+    color: var(--fathom-white);
+    font-size: 10pt;
+}
+
+.fathom-form {
+    width: 50%;
+}
+
+.fathom-form label {
+    color: var(--fathom-white) !important;
+}
+
+.fathom-form span {
+    color: var(--fathom-red) !important;
+}
+
+.fathom-form .fathom-input {
+    border-bottom: 1px solid #f7f7f7 !important;
+    color: var(--fathom-yellow) !important;
+    font-weight: bold;
+    text-align: center;
+}
+
+.fathom-button {
+    background-color: var(--fathom-white) !important;
+    border-radius: 0 !important;
+    color: var(--fathom-yellow) !important;
+    margin-top: 1em !important;
+    width: 80%;
+}
+
+.fathom-link {
+    background-color: var(--fathom-white) !important;
+    border-radius: 0 !important;
+    color: var(--fathom-yellow) !important;
+    padding: 10pt 80pt;
+}
+
+.fathom-input::-webkit-input-placeholder { /* Chrome */
+    color: var(--fathom-yellow);
+}
+.fathom-input:-ms-input-placeholder { /* IE 10+ */
+    color: var(--fathom-yellow);
+}
+.fathom-input::-moz-placeholder { /* Firefox 19+ */
+    color: var(--fathom-yellow);
+    opacity: 1;
+}
+.fathom-input:-moz-placeholder { /* Firefox 4 - 18 */
+    color: var(--fathom-yellow);
+    opacity: 1;
+}
+
+.footer-wrapper {
+    padding-top: 100px;
+}
+
+.footer-wrapper button:first-of-type {
+    margin-right: 75px;
+}
+
+/*
+ * Responsive Specific Styles
+ */
+@media only screen and (max-width: 600px) {
+    .footer-wrapper button:first-of-type {
+        margin-right: 0px;
+    }
+    .App-header {
+        padding: 0px 10px;
+    }
+}
+
+/*
+ * Font Families
+ */
+.roboto-normal {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+}
+
+.oswald-normal {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 500;
+}

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald|Roboto');
+
+:root {
+    --fathom-green: #5EB123;
+    --fathom-red: #972c2f;
+    --fathom-white: #ffffff;
+    --fathom-yellow: #ebba2d;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Oswald', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
