@@ -33,18 +33,19 @@ const utils = {
         // checking if email addresses are admin emails
         // NOTE: this will later be replaced with user.role authentication
         if(
-          /amina[+]mvp@fathomai.com/g.test(email) ||
-          /chrisp[+]mvp@fathomai.com/g.test(email) ||
-          /chrisp[+]droidtest@fathomai.com/g.test(email) ||
-          /chrisp[+]test3@fathomai.com/g.test(email) ||
-          /dipesh[+]mvp@fathomai.com/g.test(email) ||
-          /gabby[+]mvp@fathomai.com/g.test(email) ||
-          /ivonna[+]mvp@fathomai.com/g.test(email) ||
-          /mazen[+]mvp@fathomai.com/g.test(email) ||
-          /melissa[+]mvp@fathomai.com/g.test(email) ||
-          /paul[+]mvp@fathomai.com/g.test(email) ||
-          /dipesh@fathomai.com/g.test(email) ||
-          /mazen@fathomai.com/g.test(email)
+            /amina[+]mvp@fathomai.com/g.test(email) ||
+            /chrisp[+]mvp@fathomai.com/g.test(email) ||
+            /chrisp[+]droidtest@fathomai.com/g.test(email) ||
+            /chrisp[+]test3@fathomai.com/g.test(email) ||
+            /dipesh[+]mvp@fathomai.com/g.test(email) ||
+            /gabby[+]mvp@fathomai.com/g.test(email) ||
+            /ivonna[+]mvp@fathomai.com/g.test(email) ||
+            /mazen[+]mvp@fathomai.com/g.test(email) ||
+            /melissa[+]mvp@fathomai.com/g.test(email) ||
+            /paul[+]mvp@fathomai.com/g.test(email) ||
+            /dipesh@fathomai.com/g.test(email) ||
+            /mazen@fathomai.com/g.test(email) ||
+            /sean[+]mvp@fathomai.com/g.test(email)
         ) {
             return true;
         }
