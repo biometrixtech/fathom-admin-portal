@@ -36,7 +36,6 @@ function handleError(err) {
 /**
   * Sends requests to the API
   */
-// function fetcher(method, inputEndpoint, inputParams, body, api_enum) {
 function fetcher(method, route, params, body, headers = {}) {
     let newHeaders = { ...baseHeaders, ...headers };
     if(params && Object.keys(params).length > 0) {
@@ -80,7 +79,7 @@ const AppAPI = {
 ENDPOINTS.forEach((endpoint, key) => {
     AppAPI[key] = {};
     API_MAP.forEach(apiType => {
-        AppAPI[key][apiType] = (params, payload, headers) => fetcher(apiType.toUpperCase(), endpoint, params, payload, headers);
+        AppAPI[key][apiType] = (params, headers, payload) => fetcher(apiType.toUpperCase(), endpoint, params, payload, headers);
     });
 });
 

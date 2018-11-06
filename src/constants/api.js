@@ -15,8 +15,8 @@ export default {
     // The URL we're connecting to
     // hostname: 'https://apis.production.fathomai.com', // deployment
     // hostname: 'https://apis.qa.fathomai.com', // qa
-    // hostname: 'https://apis.test.fathomai.com', // test
-    hostname: 'https://apis.dev.fathomai.com', // development
+    hostname: 'https://apis.test.fathomai.com', // test
+    // hostname: 'https://apis.dev.fathomai.com', // development
 
     // Map shortnames to the actual endpoints, so that we can
     // use them like so: AppAPI.ENDPOINT_NAME.METHOD()
@@ -27,6 +27,8 @@ export default {
     //    - AppAPI.favorites.patch()
     //    - AppAPI.blog.delete()
     endpoints: new Map([
-        ['login', `${usersAPIVersion}/user/login`],
+        ['account',     `${usersAPIVersion}/account`], // POST
+        ['get_account', `${usersAPIVersion}/account/{account_id}`], // GET
+        ['login',       `${usersAPIVersion}/user/login`], // POST
     ]),
 };

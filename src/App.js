@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
 
 // import components
-import { Login, } from './components';
+import { CreateAccountCodes, Login, } from './components';
 
 // import AWS specific components
 import Amplify from 'aws-amplify';
@@ -17,6 +17,7 @@ const App = () => (
     <Router>
         <div>
             <Route exact path={'/'} component={Login} />
+            <Route exact path={'/account_codes'} component={CreateAccountCodes} />
         </div>
     </Router>
 );

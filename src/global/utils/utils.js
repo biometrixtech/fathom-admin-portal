@@ -67,6 +67,24 @@ const utils = {
         }
     },
 
+    isAccountCodesFormValid(campaign, conference, division_tier, number_of_seats, organization_name, persona) {
+        let errorMsg = '';
+        let isValid = true;
+        if(
+            campaign.length === 0 ||
+            number_of_seats.length === 0 ||
+            organization_name.length === 0 ||
+            persona.length === 0
+        ) {
+            errorMsg = ErrorMessages.invalidAccountCodesForm;
+            isValid = false;
+        }
+        return {
+            errorMsg,
+            isValid,
+        }
+    },
+
 }
 
 export default utils;

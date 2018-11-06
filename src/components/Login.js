@@ -48,7 +48,7 @@ class Login extends Component {
                         data: res,
                     })
                     this.setState({ loading: false, });
-                    this.props.history.push('/');
+                    this.props.history.push('/account_codes');
                 })
                 .catch(err => {
                     this.setState({ loading: false, });

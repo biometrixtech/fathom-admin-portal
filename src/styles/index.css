@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald|Roboto');
 
 :root {
-    --fathom-yellow: #ebba2d;
-    --fathom-white: #ffffff;
+    --fathom-green: #5EB123;
     --fathom-red: #972c2f;
+    --fathom-white: #ffffff;
+    --fathom-yellow: #ebba2d;
 }
 
 body {
