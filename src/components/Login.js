@@ -85,6 +85,7 @@ class Login extends Component {
                     }
                     <Form className={'fathom-form'}>
                         <Form.Field>
+                            <label>{'email'}<span>{'*'}</span></label>
                             <input
                                 autoComplete={'email'}
                                 className={'fathom-input roboto-normal'}
@@ -97,6 +98,7 @@ class Login extends Component {
                             />
                         </Form.Field>
                         <Form.Field>
+                            <label>{'password'}<span>{'*'}</span></label>
                             <input
                                 autoComplete={'current-password'}
                                 className={'fathom-input roboto-normal'}

@@ -95,24 +95,26 @@ class CreateAccountCodes extends Component {
                     }
                     <Form className={'fathom-form'}>
                         <Form.Field>
+                            <label>{'organization name'}<span>{'*'}</span></label>
                             <input
                                 autoComplete={'off'}
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'organization_name'}
-                                placeholder={'organization name *'}
+                                placeholder={'organization name'}
                                 required={true}
                                 type={'text'}
                                 value={organization_name}
                             />
                         </Form.Field>
                         <Form.Field>
+                            <label>{'persona'}<span>{'*'}</span></label>
                             <input
                                 autoComplete={'off'}
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'persona'}
-                                placeholder={'persona *'}
+                                placeholder={'persona'}
                                 required={true}
                                 type={'text'}
                                 value={persona}
@@ -120,24 +122,26 @@ class CreateAccountCodes extends Component {
                             <small className={'helper'}>{'comma separated string. i.e. 0,1,2,3'}</small>
                         </Form.Field>
                         <Form.Field>
+                            <label>{'number of seats'}<span>{'*'}</span></label>
                             <input
                                 autoComplete={'off'}
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'number_of_seats'}
-                                placeholder={'number of seats *'}
+                                placeholder={'number of seats'}
                                 required={true}
                                 type={'number'}
                                 value={number_of_seats}
                             />
                         </Form.Field>
                         <Form.Field>
+                            <label>{'campaign'}<span>{'*'}</span></label>
                             <input
                                 autoComplete={'off'}
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'campaign'}
-                                placeholder={'campaign *'}
+                                placeholder={'campaign'}
                                 required={true}
                                 type={'text'}
                                 value={campaign}
@@ -145,6 +149,7 @@ class CreateAccountCodes extends Component {
                             <small className={'helper'}>{'comma separated numbers. i.e. 0,1,2,3'}</small>
                         </Form.Field>
                         <Form.Field>
+                            <label>{'division / tier'}</label>
                             <input
                                 autoComplete={'off'}
                                 className={'fathom-input roboto-normal'}
@@ -157,6 +162,7 @@ class CreateAccountCodes extends Component {
                             />
                         </Form.Field>
                         <Form.Field>
+                            <label>{'conference'}</label>
                             <input
                                 autoComplete={'off'}
                                 className={'fathom-input roboto-normal'}
