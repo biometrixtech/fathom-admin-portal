@@ -1,5 +1,6 @@
 // import React specific components
 import React from 'react';
+import { connect } from 'react-redux';
 
 // import third-party libraries
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
@@ -20,4 +21,4 @@ const App = () => (
     </Router>
 );
 
-export default App;
+export default connect()(App);

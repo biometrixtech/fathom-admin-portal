@@ -1,5 +1,6 @@
 // import React specific components
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // import assets
 import logo from '../assets/logo.png';
@@ -40,17 +41,18 @@ class Login extends Component {
         this.setState({ loading: true, });
         let formValidation = AppUtils.isLoginFormValid(email, password);
         if(formValidation.isValid) {
-            // TODO: START USING API CALLS
             UserActions.loginUser(email, password)
                 .then(res => {
-                    console.log('res',res);
+                    this.props.dispatch({
+                        type: 'SET_USER',
+                        data: res,
+                    })
                     this.setState({ loading: false, });
                     this.props.history.push('/');
                 })
                 .catch(err => {
-                    console.log('err',err);
                     this.setState({ loading: false, });
-                    // this.setState({ error: '', });
+                    this.setState({ error: err.message, });
                 });
         } else {
             this.setState({ error: formValidation.errorMsg, loading: false, });
@@ -117,4 +119,8 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+    ...state,
+});
+
+export default connect(mapStateToProps)(Login);
