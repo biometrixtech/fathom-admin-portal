@@ -58,7 +58,10 @@ class CreateAccountCodes extends Component {
         if(formValidation.isValid) {
             UserActions.createAccountCodes(this.props.userReducer.authorization, campaign, conference, division_tier, number_of_seats, organization_name, persona)
                 .then(res => {
-                    this.setState({ code: res.account.code, form_inputs: this.defaultFormInputs, loading: false, });
+                    this.setState(
+                        { code: res.account.code, form_inputs: this.defaultFormInputs, loading: false, },
+                        () => this.props.history.push(`/account_code/${res.account.code}`)
+                    );
                 })
                 .catch(err => {
                     this.setState({ error: err, loading: false, });
