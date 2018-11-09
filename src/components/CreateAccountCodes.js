@@ -53,8 +53,6 @@ class CreateAccountCodes extends Component {
 
     _handleLoginFormSubmit = () => {
         const { campaign, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
-        let accountCode = 'TVQK3986';
-        this.props.history.push(`/account_code/${accountCode}`)
         this.setState({ code: '', loading: true, });
         let formValidation = AppUtils.isAccountCodesFormValid(campaign, conference, division_tier, number_of_seats, organization_name, persona);
         if(formValidation.isValid) {
@@ -83,7 +81,7 @@ class CreateAccountCodes extends Component {
                         className={'App-logo'}
                         src={logo}
                     />
-                    <h2 className={'oswald-normal'}>{'CREATE ACCOUNT CODES'}</h2>
+                  <h2 className={'oswald-normal'}>{'CREATE ACCOUNT CODESsssssssssss'}</h2>
                     { this.state.error !== '' ?
                         <div className={'error-wrapper'}>
                             <p className={'error-text oswald-normal'}>{this.state.error.toUpperCase()}</p>
