@@ -53,6 +53,8 @@ class CreateAccountCodes extends Component {
 
     _handleLoginFormSubmit = () => {
         const { campaign, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
+        let accountCode = 'TVQK3986';
+        this.props.history.push(`/account_code/${accountCode}`)
         this.setState({ code: '', loading: true, });
         let formValidation = AppUtils.isAccountCodesFormValid(campaign, conference, division_tier, number_of_seats, organization_name, persona);
         if(formValidation.isValid) {
