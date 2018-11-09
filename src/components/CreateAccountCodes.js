@@ -81,7 +81,7 @@ class CreateAccountCodes extends Component {
                         className={'App-logo'}
                         src={logo}
                     />
-                  <h2 className={'oswald-normal'}>{'CREATE ACCOUNT CODESsssssssssss'}</h2>
+                    <h2 className={'oswald-normal'}>{'CREATE ACCOUNT CODES'}</h2>
                     { this.state.error !== '' ?
                         <div className={'error-wrapper'}>
                             <p className={'error-text oswald-normal'}>{this.state.error.toUpperCase()}</p>
