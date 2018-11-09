@@ -7,6 +7,7 @@ import logo from '../assets/logo.png';
 import '../styles/App.css';
 
 // import third-party libraries
+import { Button, } from 'semantic-ui-react';
 import Loader from 'react-loader-spinner';
 
 // import global components
@@ -32,8 +33,11 @@ class SingleAccountCode extends Component {
             .catch(err => this.setState({ error: err, }));
     }
 
+    _handleRedirectToAccountCodes = () => {
+        this.props.history.push('/account_codes');
+    }
+
     render = () => {
-        console.log(this.state.account);
         const { account, error, } = this.state;
         return (
             <div className={'App'}>
@@ -52,22 +56,31 @@ class SingleAccountCode extends Component {
                         null
                     }
                     { account ?
-                        <div className={'account-code-wrapper'}>
-                            <h3>{`Account Code: ${account.code}`}</h3>
-                            <p>{`Organization Name: ${account.name}`}</p>
-                            <p>{`Persona: ${account.personas}`}</p>
-                            <p>{`Number of Seats: ${account.seats}`}</p>
-                            <p>{`Campaign: ${account.campaigns}`}</p>
-                            { account.division ?
-                                <p>{`Division/Tier: ${account.division}`}</p>
-                                :
-                                null
-                            }
-                            { account.conference ?
-                                <p>{`Conference: ${account.conference}`}</p>
-                                :
-                                null
-                            }
+                        <div>
+                            <div className={'account-code-wrapper'}>
+                                <h3>{`Account Code: ${account.code}`}</h3>
+                                <p>{`Organization Name: ${account.name}`}</p>
+                                <p>{`Persona: ${account.personas}`}</p>
+                                <p>{`Number of Seats: ${account.seats}`}</p>
+                                <p>{`Campaign: ${account.campaigns}`}</p>
+                                { account.division ?
+                                    <p>{`Division/Tier: ${account.division}`}</p>
+                                    :
+                                    null
+                                }
+                                { account.conference ?
+                                    <p>{`Conference: ${account.conference}`}</p>
+                                    :
+                                    null
+                                }
+                            </div>
+                            <Button
+                                className={'fathom-button roboto-normal'}
+                                onClick={this._handleRedirectToAccountCodes}
+                                type={'button'}
+                            >
+                                {'Create Another Code'}
+                            </Button>
                         </div>
                         :
                         <Loader

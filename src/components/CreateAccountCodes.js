@@ -182,7 +182,7 @@ class CreateAccountCodes extends Component {
                             className={'fathom-button roboto-normal'}
                             disabled={this.state.loading}
                             loading={this.state.loading}
-                            onClick={this._handleLoginFormSubmit}
+                            onClick={() => this._handleLoginFormSubmit()}
                             type={'button'}
                         >
                             {'Submit'}
