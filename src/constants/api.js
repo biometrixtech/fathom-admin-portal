@@ -27,9 +27,10 @@ export default {
     //    - AppAPI.favorites.patch()
     //    - AppAPI.blog.delete()
     endpoints: new Map([
-        ['account',     `${usersAPIVersion}/account`], // POST
-        ['authorize',   `${usersAPIVersion}/user/{userId}/authorize`], // POST
-        ['get_account', `${usersAPIVersion}/account/{account_id}`], // GET
-        ['login',       `${usersAPIVersion}/user/login`], // POST
+        ['account',          `${usersAPIVersion}/account`], // POST
+        ['authorize',        `${usersAPIVersion}/user/{userId}/authorize`], // POST
+        ['get_account',      `${usersAPIVersion}/account/{account_id}`], // GET
+        ['get_account_code', `${usersAPIVersion}/account?account_code={account_code}`], // GET
+        ['login',            `${usersAPIVersion}/user/login`], // POST
     ]),
 };

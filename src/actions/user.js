@@ -49,7 +49,14 @@ const getAccounts = (header, account_id) => {
         .catch(err => Promise.reject(err));
 };
 
-
+/**
+  * Get Account Code Details
+  */
+const getAccountCodeDetails = (account_code) => {
+    return AppAPI.get_account_code.get({account_code})
+        .then(response => Promise.resolve(response))
+        .catch(err => Promise.reject(err));
+};
 
 /**
   * Authorize User
@@ -74,6 +81,7 @@ const authorizeUser = (authorization, user, userCreds) => {
 export default {
     authorizeUser,
     createAccountCodes,
+    getAccountCodeDetails,
     getAccounts,
     loginUser,
 };
