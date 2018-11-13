@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald|Roboto');
 
 :root {
+    --fathom-black: #000000;
     --fathom-green: #5EB123;
     --fathom-red: #972c2f;
     --fathom-white: #ffffff;

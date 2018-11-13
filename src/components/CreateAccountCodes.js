@@ -42,8 +42,8 @@ class CreateAccountCodes extends Component {
 
     componentDidMount = () => {
         const { userReducer, } = this.props;
-        if(!AppUtils.isAuthorized(userReducer) || userReducer.user) {
-            return this.props.history.push('/');
+        if(!AppUtils.isAuthorized(userReducer) || !userReducer.user) {
+            this.props.history.push('/');
         }
     }
 
@@ -105,7 +105,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'organization_name'}
-                                placeholder={'organization name'}
                                 required={true}
                                 type={'text'}
                                 value={organization_name}
@@ -118,7 +117,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'persona'}
-                                placeholder={'persona'}
                                 required={true}
                                 type={'text'}
                                 value={persona}
@@ -132,7 +130,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'number_of_seats'}
-                                placeholder={'number of seats'}
                                 required={true}
                                 type={'number'}
                                 value={number_of_seats}
@@ -145,7 +142,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'campaign'}
-                                placeholder={'campaign'}
                                 required={true}
                                 type={'text'}
                                 value={campaign}
@@ -159,7 +155,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'division_tier'}
-                                placeholder={'division / tier'}
                                 required={false}
                                 type={'text'}
                                 value={division_tier}
@@ -172,7 +167,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'conference'}
-                                placeholder={'conference'}
                                 required={false}
                                 type={'text'}
                                 value={conference}

@@ -33,7 +33,7 @@ class Login extends Component {
 
     componentDidMount = () => {
         if(AppUtils.isAuthorized(this.props.userReducer)) {
-            return this.props.history.push('/account_codes');
+            this.props.history.push('/account_codes');
         }
     }
 
@@ -91,7 +91,6 @@ class Login extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'email'}
-                                placeholder={'email'}
                                 required={true}
                                 type={'email'}
                                 value={email}
@@ -104,7 +103,6 @@ class Login extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'password'}
-                                placeholder={'password'}
                                 required={true}
                                 type={'password'}
                                 value={password}
