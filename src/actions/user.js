@@ -65,16 +65,8 @@ const getAccountCodeDetails = (account_code) => {
 const authorizeUser = (authorization, user, userCreds) => {
     let session_token = authorization.session_token;
     let userId = user.id;
-    return dispatch => AppAPI.authorize.post({ userId }, { session_token })
-        .then(response => {
-
-            // dispatch({
-            //     type: SET_AUTHORIZATION,
-            //     data: response,
-            // });
-
-            return Promise.resolve(response);
-        })
+    return AppAPI.authorize.post({ userId }, { session_token })
+        .then(response => Promise.resolve(response))
         .catch(err => Promise.reject(err));
 };
 

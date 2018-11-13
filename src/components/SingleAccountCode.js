@@ -25,8 +25,11 @@ class SingleAccountCode extends Component {
 
     componentDidMount = () => {
         const { history, match, userReducer, } = this.props;
+        if(!userReducer.user) {
+            return history.push('/');
+        }
         if(!AppUtils.isAuthorized(userReducer)) {
-            history.push('/account_code');
+            return history.push('/account_code');
         }
         UserActions.getAccountCodeDetails(match.params.account_code.toUpperCase())
             .then(res => this.setState({ account: res.account, }))
@@ -48,7 +51,7 @@ class SingleAccountCode extends Component {
                         src={logo}
                     />
                     <h2 className={'oswald-normal'}>{'SINGLE ACCOUNT CODE'}</h2>
-                    { error !== '' ?
+                    { error && error !== '' ?
                         <div className={'error-wrapper'}>
                             <p className={'error-text oswald-normal'}>{error.toUpperCase()}</p>
                         </div>

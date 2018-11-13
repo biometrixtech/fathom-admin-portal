@@ -4,6 +4,7 @@
 
 // Consts and Libs
 import { APIConfig, ErrorMessages, } from '../../constants';
+import { store, } from '../../store';
 
 // import third-party libraries
 import _ from 'lodash';
@@ -14,6 +15,9 @@ const ENDPOINTS = APIConfig.endpoints;
 const API_MAP = ['get', 'post', 'patch', 'put', 'delete'];
 const baseUrl = APIConfig.hostname;
 let baseHeaders = { 'Content-Type': 'application/json' };
+
+// helper variables
+let unauthorizedCounter = 0;
 
 /* Helper Functions ==================================================================== */
 
@@ -55,8 +59,37 @@ function fetcher(method, route, params, body, headers = {}) {
         })
         .then(response => {
 
-            if (response && /401/.test(`${response.status}`) && response !== APIConfig.endpoints.get('login')) {
-                // TODO: reauthorized
+            console.log('response',response);
+            if (response && /401/.test(`${response.status}`) && route !== APIConfig.endpoints.get('login')) {
+                let currentState = store.getState();
+                unauthorizedCounter += 1;
+                if(unauthorizedCounter === 5 && /[/]authorize/.test(route)) {
+                    store.dispatch({
+                        type: 'LOGOUT',
+                    });
+                    unauthorizedCounter = 0;
+                    return currentState.history.push('/');
+                }
+                let userIdObj = {userId: currentState.userReducer.user ? currentState.userReducer.user.id : ''};
+                let sessionTokenObj = {session_token: currentState.userReducer.authorization ? currentState.userReducer.authorization.session_token : ''};
+                return fetcher('POST', APIConfig.endpoints.get('authorize'), userIdObj, sessionTokenObj, 0)
+                    .then(res => {
+                        unauthorizedCounter = 0;
+                        store.dispatch({
+                            type: 'SET_AUTHORIZATION',
+                            data: res.authorization,
+                        });
+                        // re-send API
+                        return fetcher(method, route, params, body, headers);
+                    })
+                    .catch(err => {
+                        // logout
+                        store.dispatch({
+                            type: 'LOGOUT',
+                        });
+                        // route to login
+                        currentState.history.push('/');
+                    });
             }
 
             if(response.status >= 200 && response.status < 300) {

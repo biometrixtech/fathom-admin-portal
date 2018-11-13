@@ -41,8 +41,9 @@ class CreateAccountCodes extends Component {
     }
 
     componentDidMount = () => {
-        if(!AppUtils.isAuthorized(this.props.userReducer)) {
-            this.props.history.push('/');
+        const { userReducer, } = this.props;
+        if(!AppUtils.isAuthorized(userReducer) || userReducer.user) {
+            return this.props.history.push('/');
         }
     }
 
@@ -82,14 +83,14 @@ class CreateAccountCodes extends Component {
                         src={logo}
                     />
                     <h2 className={'oswald-normal'}>{'CREATE ACCOUNT CODES'}</h2>
-                    { this.state.error !== '' ?
+                    { this.state.error && this.state.error !== '' ?
                         <div className={'error-wrapper'}>
                             <p className={'error-text oswald-normal'}>{this.state.error.toUpperCase()}</p>
                         </div>
                         :
                         null
                     }
-                    { this.state.code !== '' ?
+                    { this.state.code && this.state.code !== '' ?
                         <div className={'code-wrapper'}>
                             <p className={'code-text oswald-normal'}>{this.state.code.toUpperCase()}</p>
                         </div>

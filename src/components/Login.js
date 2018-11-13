@@ -33,7 +33,7 @@ class Login extends Component {
 
     componentDidMount = () => {
         if(AppUtils.isAuthorized(this.props.userReducer)) {
-            this.props.history.push('/account_codes');
+            return this.props.history.push('/account_codes');
         }
     }
 
@@ -76,7 +76,7 @@ class Login extends Component {
                         src={logo}
                     />
                     <h2 className={'oswald-normal'}>{'LOG IN'}</h2>
-                    { this.state.error !== '' ?
+                    { this.state.error && this.state.error !== '' ?
                         <div className={'error-wrapper'}>
                             <p className={'error-text oswald-normal'}>{this.state.error.toUpperCase()}</p>
                         </div>
