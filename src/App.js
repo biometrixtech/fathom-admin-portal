@@ -18,7 +18,7 @@ const App = () => (
         <div>
             <Route exact path={'/'} component={Login} />
             <Route exact path={'/account_codes'} component={CreateAccountCodes} />
-            <Route exact path={'/account_code/:account_code'} component={SingleAccountCode} />
+            <Route exact path={'/account_code/:athlete_code/:coach_code'} component={SingleAccountCode} />
         </div>
     </Router>
 );

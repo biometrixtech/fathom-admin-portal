@@ -31,7 +31,7 @@ class SingleAccountCode extends Component {
         if(!AppUtils.isAuthorized(userReducer)) {
             return history.push('/account_code');
         }
-        UserActions.getAccountCodeDetails(match.params.account_code.toUpperCase())
+        UserActions.getAccountCodeDetails(match.params.athlete_code.toUpperCase())
             .then(res => this.setState({ account: res.account, }))
             .catch(err => this.setState({ error: err, }));
     }
@@ -42,6 +42,7 @@ class SingleAccountCode extends Component {
 
     render = () => {
         const { account, error, } = this.state;
+        const { match, } = this.props;
         return (
             <div className={'App'}>
                 <header className={'App-header'}>
@@ -61,10 +62,12 @@ class SingleAccountCode extends Component {
                     { account ?
                         <div>
                             <div className={'account-code-wrapper'}>
-                                <h3>{`Account Code: ${account.code}`}</h3>
+                                <h3>{`Account Code (Athlete): ${match.params.athlete_code.toUpperCase()}`}</h3>
+                                <h3>{`Account Code (Coach): ${match.params.coach_code.toUpperCase()}`}</h3>
                                 <p>{`Organization Name: ${account.name}`}</p>
                                 <p>{`Persona: ${account.personas}`}</p>
-                                <p>{`Number of Seats: ${account.seats}`}</p>
+                                <p>{`Number of Seats (athletes): ${account.seats}`}</p>
+                                <p>{`Number of Seats (coaches): ${account.coach_seats}`}</p>
                                 <p>{`Campaign: ${account.campaigns}`}</p>
                                 { account.division ?
                                     <p>{`Division/Tier: ${account.division}`}</p>

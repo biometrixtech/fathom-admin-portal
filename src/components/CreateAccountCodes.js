@@ -21,22 +21,24 @@ class CreateAccountCodes extends Component {
             code:        '',
             error:       '',
             form_inputs: {
-                campaign:          '', // (array of integers )
+                campaign:          '', // (array of integers)
+                coach_seats:       '', // (string) number of coaches seats
                 conference:        '', // (string) (not required)
                 division_tier:     '', // (string) (not required)
-                number_of_seats:   '', // integer
-                organization_name: '', // string
-                persona:           '', // (array of integers )
+                number_of_seats:   '', // (integer) number of athlete seats
+                organization_name: '', // (string)
+                persona:           '', // (array of integers)
             },
             loading: false,
         };
         this.defaultFormInputs = {
-            campaign:          '', // (array of integers )
+            campaign:          '', // (array of integers)
+            coach_seats:       '', // (string) number of coaches seats
             conference:        '', // (string) (not required)
             division_tier:     '', // (string) (not required)
-            number_of_seats:   '', // integer
-            organization_name: '', // string
-            persona:           '', // (array of integers )
+            number_of_seats:   '', // (integer) number of athlete seats
+            organization_name: '', // (string)
+            persona:           '', // (array of integers)
         };
     }
 
@@ -53,17 +55,15 @@ class CreateAccountCodes extends Component {
     }
 
     _handleLoginFormSubmit = () => {
-        const { campaign, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
+        const { campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
         this.setState({ code: '', loading: true, });
-        let formValidation = AppUtils.isAccountCodesFormValid(campaign, conference, division_tier, number_of_seats, organization_name, persona);
+        let formValidation = AppUtils.isAccountCodesFormValid(campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona);
         if(formValidation.isValid) {
-            UserActions.createAccountCodes(this.props.userReducer.authorization, campaign, conference, division_tier, number_of_seats, organization_name, persona)
-                .then(res => {
-                    this.setState(
-                        { code: res.account.code, form_inputs: this.defaultFormInputs, loading: false, },
-                        () => this.props.history.push(`/account_code/${res.account.code}`)
-                    );
-                })
+            UserActions.createAccountCodes(this.props.userReducer.authorization, campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona)
+                .then(res => this.setState(
+                    { code: res.account.code, form_inputs: this.defaultFormInputs, loading: false, },
+                    () => this.props.history.push(`/account_code/${res.account.codes.athlete}/${res.account.codes.coach}`)
+                ))
                 .catch(err => {
                     this.setState({ error: err, loading: false, });
                 });
@@ -73,7 +73,7 @@ class CreateAccountCodes extends Component {
     }
 
     render = () => {
-        const { campaign, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
+        const { campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
         return (
             <div className={'App'}>
                 <header className={'App-header'}>
@@ -124,7 +124,7 @@ class CreateAccountCodes extends Component {
                             <small className={'helper'}>{'comma separated string. i.e. 0,1,2,3'}</small>
                         </Form.Field>
                         <Form.Field>
-                            <label>{'number of seats'}<span>{'*'}</span></label>
+                            <label>{'number of seats (athletes)'}<span>{'*'}</span></label>
                             <input
                                 autoComplete={'off'}
                                 className={'fathom-input roboto-normal'}
@@ -133,6 +133,18 @@ class CreateAccountCodes extends Component {
                                 required={true}
                                 type={'number'}
                                 value={number_of_seats}
+                            />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>{'number of seats (coaches)'}<span>{'*'}</span></label>
+                            <input
+                                autoComplete={'off'}
+                                className={'fathom-input roboto-normal'}
+                                onChange={this._handleFormChange}
+                                name={'coach_seats'}
+                                required={true}
+                                type={'number'}
+                                value={coach_seats}
                             />
                         </Form.Field>
                         <Form.Field>
