@@ -62,7 +62,7 @@ class CreateAccountCodes extends Component {
             UserActions.createAccountCodes(this.props.userReducer.authorization, campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona)
                 .then(res => this.setState(
                     { code: res.account.code, form_inputs: this.defaultFormInputs, loading: false, },
-                    () => this.props.history.push(`/account_code/${res.account.codes.athlete}/${res.account.codes.coach}`)
+                    () => this.props.history.push(`/account_code/${res.account.id}`)
                 ))
                 .catch(err => {
                     this.setState({ error: err, loading: false, });

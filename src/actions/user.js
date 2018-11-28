@@ -49,8 +49,8 @@ const getAccounts = (header, account_id) => {
 /**
   * Get Account Code Details
   */
-const getAccountCodeDetails = (account_code) => {
-    return AppAPI.get_account_code.get({account_code})
+const getAccountCodeDetails = (authorization, account_uuid) => {
+    return AppAPI.get_account_code.get({account_uuid}, {Authorization: authorization.jwt})
         .then(response => Promise.resolve(response))
         .catch(err => Promise.reject(err));
 };
