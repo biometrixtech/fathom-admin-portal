@@ -10,9 +10,11 @@ export default (state = {}, action) => {
             user:          action.data.user,
         }
     case 'SET_AUTHORIZATION':
-        return {
-            authorization: action.data.authorization,
-        }
+        return Object.assign({}, state, {
+            authorization: action.data,
+        });
+    case 'LOGOUT':
+        return {};
     default:
         return state;
     }

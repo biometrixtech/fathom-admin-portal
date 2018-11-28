@@ -71,11 +71,12 @@ const utils = {
         }
     },
 
-    isAccountCodesFormValid(campaign, conference, division_tier, number_of_seats, organization_name, persona) {
+    isAccountCodesFormValid(campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona) {
         let errorMsg = '';
         let isValid = true;
         if(
             campaign.length === 0 ||
+            coach_seats.length === 0 ||
             number_of_seats.length === 0 ||
             organization_name.length === 0 ||
             persona.length === 0

@@ -3,7 +3,7 @@
  */
 
 // what {version} are we on?
-const usersAPIVersion = '/users/2_0';
+const usersAPIVersion = '/users/2_1';
 
 export default {
     APIs: {
@@ -30,7 +30,7 @@ export default {
         ['account',          `${usersAPIVersion}/account`], // POST
         ['authorize',        `${usersAPIVersion}/user/{userId}/authorize`], // POST
         ['get_account',      `${usersAPIVersion}/account/{account_id}`], // GET
-        ['get_account_code', `${usersAPIVersion}/account?account_code={account_code}`], // GET
+        ['get_account_code', `${usersAPIVersion}/account/{account_uuid}`], // GET
         ['login',            `${usersAPIVersion}/user/login`], // POST
     ]),
 };

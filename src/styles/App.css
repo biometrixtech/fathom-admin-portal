@@ -86,11 +86,11 @@
 }
 
 .account-code-wrapper h3 {
-    color: #000000;
+    color: var(--fathom-black);
 }
 
 .account-code-wrapper p {
-    color: #000000;
+    color: var(--fathom-black);
     font-size: 1rem;
 }
 
@@ -137,7 +137,6 @@
 
 .fathom-form .fathom-input {
     border-bottom: 1px solid #f7f7f7 !important;
-    color: var(--fathom-yellow) !important;
     font-weight: bold;
     text-align: center;
 }

@@ -21,27 +21,30 @@ class CreateAccountCodes extends Component {
             code:        '',
             error:       '',
             form_inputs: {
-                campaign:          '', // (array of integers )
+                campaign:          '', // (array of integers)
+                coach_seats:       '', // (string) number of coaches seats
                 conference:        '', // (string) (not required)
                 division_tier:     '', // (string) (not required)
-                number_of_seats:   '', // integer
-                organization_name: '', // string
-                persona:           '', // (array of integers )
+                number_of_seats:   '', // (integer) number of athlete seats
+                organization_name: '', // (string)
+                persona:           '', // (array of integers)
             },
             loading: false,
         };
         this.defaultFormInputs = {
-            campaign:          '', // (array of integers )
+            campaign:          '', // (array of integers)
+            coach_seats:       '', // (string) number of coaches seats
             conference:        '', // (string) (not required)
             division_tier:     '', // (string) (not required)
-            number_of_seats:   '', // integer
-            organization_name: '', // string
-            persona:           '', // (array of integers )
+            number_of_seats:   '', // (integer) number of athlete seats
+            organization_name: '', // (string)
+            persona:           '', // (array of integers)
         };
     }
 
     componentDidMount = () => {
-        if(!AppUtils.isAuthorized(this.props.userReducer)) {
+        const { userReducer, } = this.props;
+        if(!AppUtils.isAuthorized(userReducer) || !userReducer.user) {
             this.props.history.push('/');
         }
     }
@@ -52,17 +55,15 @@ class CreateAccountCodes extends Component {
     }
 
     _handleLoginFormSubmit = () => {
-        const { campaign, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
+        const { campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
         this.setState({ code: '', loading: true, });
-        let formValidation = AppUtils.isAccountCodesFormValid(campaign, conference, division_tier, number_of_seats, organization_name, persona);
+        let formValidation = AppUtils.isAccountCodesFormValid(campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona);
         if(formValidation.isValid) {
-            UserActions.createAccountCodes(this.props.userReducer.authorization, campaign, conference, division_tier, number_of_seats, organization_name, persona)
-                .then(res => {
-                    this.setState(
-                        { code: res.account.code, form_inputs: this.defaultFormInputs, loading: false, },
-                        () => this.props.history.push(`/account_code/${res.account.code}`)
-                    );
-                })
+            UserActions.createAccountCodes(this.props.userReducer.authorization, campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona)
+                .then(res => this.setState(
+                    { code: res.account.code, form_inputs: this.defaultFormInputs, loading: false, },
+                    () => this.props.history.push(`/account_code/${res.account.id}`)
+                ))
                 .catch(err => {
                     this.setState({ error: err, loading: false, });
                 });
@@ -72,7 +73,7 @@ class CreateAccountCodes extends Component {
     }
 
     render = () => {
-        const { campaign, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
+        const { campaign, coach_seats, conference, division_tier, number_of_seats, organization_name, persona, } = this.state.form_inputs;
         return (
             <div className={'App'}>
                 <header className={'App-header'}>
@@ -82,14 +83,14 @@ class CreateAccountCodes extends Component {
                         src={logo}
                     />
                     <h2 className={'oswald-normal'}>{'CREATE ACCOUNT CODES'}</h2>
-                    { this.state.error !== '' ?
+                    { this.state.error && this.state.error !== '' ?
                         <div className={'error-wrapper'}>
                             <p className={'error-text oswald-normal'}>{this.state.error.toUpperCase()}</p>
                         </div>
                         :
                         null
                     }
-                    { this.state.code !== '' ?
+                    { this.state.code && this.state.code !== '' ?
                         <div className={'code-wrapper'}>
                             <p className={'code-text oswald-normal'}>{this.state.code.toUpperCase()}</p>
                         </div>
@@ -104,7 +105,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'organization_name'}
-                                placeholder={'organization name'}
                                 required={true}
                                 type={'text'}
                                 value={organization_name}
@@ -117,7 +117,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'persona'}
-                                placeholder={'persona'}
                                 required={true}
                                 type={'text'}
                                 value={persona}
@@ -125,16 +124,27 @@ class CreateAccountCodes extends Component {
                             <small className={'helper'}>{'comma separated string. i.e. 0,1,2,3'}</small>
                         </Form.Field>
                         <Form.Field>
-                            <label>{'number of seats'}<span>{'*'}</span></label>
+                            <label>{'number of seats (athletes)'}<span>{'*'}</span></label>
                             <input
                                 autoComplete={'off'}
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'number_of_seats'}
-                                placeholder={'number of seats'}
                                 required={true}
                                 type={'number'}
                                 value={number_of_seats}
+                            />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>{'number of seats (coaches)'}<span>{'*'}</span></label>
+                            <input
+                                autoComplete={'off'}
+                                className={'fathom-input roboto-normal'}
+                                onChange={this._handleFormChange}
+                                name={'coach_seats'}
+                                required={true}
+                                type={'number'}
+                                value={coach_seats}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -144,7 +154,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'campaign'}
-                                placeholder={'campaign'}
                                 required={true}
                                 type={'text'}
                                 value={campaign}
@@ -158,7 +167,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'division_tier'}
-                                placeholder={'division / tier'}
                                 required={false}
                                 type={'text'}
                                 value={division_tier}
@@ -171,7 +179,6 @@ class CreateAccountCodes extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'conference'}
-                                placeholder={'conference'}
                                 required={false}
                                 type={'text'}
                                 value={conference}

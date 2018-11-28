@@ -22,8 +22,8 @@ const loginUser = (email, password) => {
   * -- Organization/Affiliate Name (string)
   * -- Persona (array of integers )
   */
-const createAccountCodes = (authorization, campaigns, conference, division, seats, name, personas) => {
-    let bodyObj = { campaigns, seats, name, personas };
+const createAccountCodes = (authorization, campaigns, coach_seats, conference, division, seats, name, personas) => {
+    let bodyObj = { campaigns, coach_seats, seats, name, personas };
     bodyObj.campaigns = campaigns.split(',');
     bodyObj.personas = personas.split(',');
     if(conference.length > 0) {
@@ -33,10 +33,7 @@ const createAccountCodes = (authorization, campaigns, conference, division, seat
         bodyObj.division = division;
     }
     return AppAPI.account.post(false, {Authorization: authorization.jwt}, bodyObj)
-        .then(response => {
-            let accountId = response.account.id;
-            return Promise.resolve(getAccounts({Authorization: authorization.jwt}, accountId));
-        })
+        .then(response => Promise.resolve(response))
         .catch(err => Promise.reject(err));
 };
 
@@ -52,8 +49,8 @@ const getAccounts = (header, account_id) => {
 /**
   * Get Account Code Details
   */
-const getAccountCodeDetails = (account_code) => {
-    return AppAPI.get_account_code.get({account_code})
+const getAccountCodeDetails = (authorization, account_uuid) => {
+    return AppAPI.get_account_code.get({account_uuid}, {Authorization: authorization.jwt})
         .then(response => Promise.resolve(response))
         .catch(err => Promise.reject(err));
 };
@@ -65,16 +62,8 @@ const getAccountCodeDetails = (account_code) => {
 const authorizeUser = (authorization, user, userCreds) => {
     let session_token = authorization.session_token;
     let userId = user.id;
-    return dispatch => AppAPI.authorize.post({ userId }, { session_token })
-        .then(response => {
-
-            // dispatch({
-            //     type: SET_AUTHORIZATION,
-            //     data: response,
-            // });
-
-            return Promise.resolve(response);
-        })
+    return AppAPI.authorize.post({ userId }, { session_token })
+        .then(response => Promise.resolve(response))
         .catch(err => Promise.reject(err));
 };
 

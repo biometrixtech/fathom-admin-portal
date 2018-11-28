@@ -25,10 +25,13 @@ class SingleAccountCode extends Component {
 
     componentDidMount = () => {
         const { history, match, userReducer, } = this.props;
-        if(!AppUtils.isAuthorized(userReducer)) {
-            history.push('/account_code');
+        if(!userReducer.user) {
+            return history.push('/');
         }
-        UserActions.getAccountCodeDetails(match.params.account_code.toUpperCase())
+        if(!AppUtils.isAuthorized(userReducer)) {
+            return history.push('/account_code');
+        }
+        UserActions.getAccountCodeDetails(this.props.userReducer.authorization, match.params.account_uuid)
             .then(res => this.setState({ account: res.account, }))
             .catch(err => this.setState({ error: err, }));
     }
@@ -48,7 +51,7 @@ class SingleAccountCode extends Component {
                         src={logo}
                     />
                     <h2 className={'oswald-normal'}>{'SINGLE ACCOUNT CODE'}</h2>
-                    { error !== '' ?
+                    { error && error !== '' ?
                         <div className={'error-wrapper'}>
                             <p className={'error-text oswald-normal'}>{error.toUpperCase()}</p>
                         </div>
@@ -58,10 +61,12 @@ class SingleAccountCode extends Component {
                     { account ?
                         <div>
                             <div className={'account-code-wrapper'}>
-                                <h3>{`Account Code: ${account.code}`}</h3>
+                                <h3>{`Account Code (Athlete): ${account.codes.athlete.toUpperCase()}`}</h3>
+                                <h3>{`Account Code (Coach): ${account.codes.coach.toUpperCase()}`}</h3>
                                 <p>{`Organization Name: ${account.name}`}</p>
                                 <p>{`Persona: ${account.personas}`}</p>
-                                <p>{`Number of Seats: ${account.seats}`}</p>
+                                <p>{`Number of Seats (athletes): ${account.seats}`}</p>
+                                <p>{`Number of Seats (coaches): ${account.coach_seats}`}</p>
                                 <p>{`Campaign: ${account.campaigns}`}</p>
                                 { account.division ?
                                     <p>{`Division/Tier: ${account.division}`}</p>

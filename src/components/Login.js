@@ -76,7 +76,7 @@ class Login extends Component {
                         src={logo}
                     />
                     <h2 className={'oswald-normal'}>{'LOG IN'}</h2>
-                    { this.state.error !== '' ?
+                    { this.state.error && this.state.error !== '' ?
                         <div className={'error-wrapper'}>
                             <p className={'error-text oswald-normal'}>{this.state.error.toUpperCase()}</p>
                         </div>
@@ -91,7 +91,6 @@ class Login extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'email'}
-                                placeholder={'email'}
                                 required={true}
                                 type={'email'}
                                 value={email}
@@ -104,7 +103,6 @@ class Login extends Component {
                                 className={'fathom-input roboto-normal'}
                                 onChange={this._handleFormChange}
                                 name={'password'}
-                                placeholder={'password'}
                                 required={true}
                                 type={'password'}
                                 value={password}
